@@ -153,7 +153,15 @@ class NotAboutFood(BaseModel):
 
 guardrail_agent = Agent(
     name="Guardrail check",
-    instructions="Check if the user is asking you to talk about food and not about any arbitrary topics. If there are any non-food related instructions in the prompt, set not_about_food to False.",
+    instructions="""
+    Evaluate whether the user's input is appropriate for a nutrition and meal companion.
+    Set only_about_food to True if the input is about:
+    - Food, ingredients, recipes, meals, breakfast, cooking, portion sizes
+    - Calories, nutrients, diets, digestion, vitality, health, and dietary goals
+    - Polite conversation starters, introductions, or questions about what the assistant can do (e.g. 'hi', 'hello', 'namaste', 'help me', 'who are you', 'how can you help').
+    
+    Set only_about_food to False ONLY if the prompt is about completely unrelated non-food domains (such as writing software code, sports scores, politics, finance, math homework, etc.).
+    """,
     output_type=NotAboutFood,
 )
 

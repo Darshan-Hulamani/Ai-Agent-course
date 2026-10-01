@@ -14,50 +14,62 @@ async def on_chat_start():
     session = SQLiteSession("conversation_history")
     cl.user_session.set("agent_session", session)
     
-    # Register Ojas avatars for message bubbles and tool steps
-    await cl.Avatar(name="Ojas", url="/public/avatar.svg").send()
-    await cl.Avatar(name="calorie-calculator", url="/public/avatar.svg").send()
-    await cl.Avatar(name="breakfast-planner", url="/public/avatar.svg").send()
-    
-    # Connect MCP server
-    await exa_search_mcp.connect()
+    # Connect Exa MCP server safely
+    try:
+        await exa_search_mcp.connect()
+    except Exception as e:
+        print(f"MCP connection warning: {e}")
 
 
 @cl.on_message
 async def on_message(message: cl.Message):
     session = cl.user_session.get("agent_session")
-
-    result = Runner.run_streamed(
-        nutrition_agent,
-        message.content,
-        session=session,
-    )
-
     msg = cl.Message(content="", author="Ojas")
-    async for event in result.stream_events():
-        # Stream final message text to screen
-        if event.type == "raw_response_event" and isinstance(
-            event.data, ResponseTextDeltaEvent
-        ):
-            await msg.stream_token(token=event.data.delta)
-            print(event.data.delta, end="", flush=True)
 
-        elif (
-            event.type == "raw_response_event"
-            and hasattr(event.data, "item")
-            and hasattr(event.data.item, "type")
-            and event.data.item.type == "function_call"
-            and len(event.data.item.arguments) > 0
-        ):
-            with cl.Step(name=f"{event.data.item.name}", type="tool") as step:
-                step.input = event.data.item.arguments
-                print(
-                    f"\nTool call: {
-                        event.data.item.name} with args: {
-                        event.data.item.arguments}"
-                )
+    try:
+        result = Runner.run_streamed(
+            nutrition_agent,
+            message.content,
+            session=session,
+        )
 
-    await msg.update()
+        async for event in result.stream_events():
+            # Stream final message text to screen
+            if event.type == "raw_response_event" and isinstance(
+                event.data, ResponseTextDeltaEvent
+            ):
+                await msg.stream_token(token=event.data.delta)
+                print(event.data.delta, end="", flush=True)
+
+            elif (
+                event.type == "raw_response_event"
+                and hasattr(event.data, "item")
+                and hasattr(event.data.item, "type")
+                and event.data.item.type == "function_call"
+                and len(event.data.item.arguments) > 0
+            ):
+                with cl.Step(name=f"{event.data.item.name}", type="tool") as step:
+                    step.input = event.data.item.arguments
+                    print(
+                        f"\nTool call: {event.data.item.name} with args: {event.data.item.arguments}"
+                    )
+
+        await msg.update()
+
+    except InputGuardrailTripwireTriggered:
+        fallback = (
+            "Namaste! I'm Ojas, your everyday nutrition companion. In Ayurveda, Ojas is the vitality "
+            "that comes from eating well, and that's what I'm here to help you build. "
+            "I focus exclusively on food, nutrition, recipes, and meal planning. "
+            "Tell me what you ate today or what you'd like to plan, and I'll help you out!"
+        )
+        await msg.stream_token(fallback)
+        await msg.update()
+    except Exception as e:
+        print(f"Error during message processing: {e}")
+        error_msg = "I encountered an unexpected issue while processing your request. Please try again!"
+        await msg.stream_token(error_msg)
+        await msg.update()
 
 
 @cl.password_auth_callback
