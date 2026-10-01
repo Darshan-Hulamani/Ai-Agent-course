@@ -79,43 +79,53 @@ html.dark .bg-background,
 /* ==========================================================================
    2. PINNED HEADER LOGO (TOP LEFT CORNER ALWAYS)
    ========================================================================== */
+#header,
+div[id="header"],
 header {
   position: relative !important;
   background-color: var(--ojas-header-bg) !important;
   backdrop-filter: blur(14px) !important;
   border-bottom: 1px solid var(--ojas-border) !important;
-  padding-left: 175px !important; /* Space for the pinned logo */
   height: 60px !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04) !important;
 }
 
-/* Top Decorative Accent Line */
+/* Top Decorative Accent Line on #header */
+#header::after,
+div[id="header"]::after,
 header::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #047857 0%, #34D399 50%, #F59E0B 100%);
-  z-index: 99;
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, #047857 0%, #34D399 50%, #F59E0B 100%) !important;
+  z-index: 99 !important;
 }
 
-/* Permanently Pinned Ojas Brand Logo in Header Top-Left */
-header::before {
-  content: "";
-  position: absolute;
-  left: 54px; /* Placed cleanly next to the sidebar toggle button */
-  top: 50%;
-  transform: translateY(-50%);
-  width: 145px;
-  height: 36px;
-  background-image: url('/public/logo.svg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: left center;
-  z-index: 100;
-  pointer-events: none;
+/* Permanently Pinned Ojas Brand Logo in Header Top-Left next to New Chat button */
+#header .flex.items-center:first-child::after,
+div[id="header"] .flex.items-center:first-child::after {
+  content: "" !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin-left: 14px !important;
+  width: 155px !important;
+  height: 36px !important;
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20220%2050%22%20fill%3D%22none%22%20width%3D%22220%22%20height%3D%2250%22%3E%20%3Cdefs%3E%20%3C%21--%20Gradients%20--%3E%20%3ClinearGradient%20id%3D%22emeraldGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23047857%22%20/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2310B981%22%20/%3E%20%3C/linearGradient%3E%20%3ClinearGradient%20id%3D%22mintGrad%22%20x1%3D%220%25%22%20y1%3D%22100%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2310B981%22%20/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2334D399%22%20/%3E%20%3C/linearGradient%3E%20%3ClinearGradient%20id%3D%22turmericGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23F59E0B%22%20/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23FBBF24%22%20/%3E%20%3C/linearGradient%3E%20%3Cfilter%20id%3D%22softGlow%22%20x%3D%22-20%25%22%20y%3D%22-20%25%22%20width%3D%22140%25%22%20height%3D%22140%25%22%3E%20%3CfeGaussianBlur%20stdDeviation%3D%221.5%22%20result%3D%22blur%22%20/%3E%20%3CfeComposite%20in%3D%22SourceGraphic%22%20in2%3D%22blur%22%20operator%3D%22over%22%20/%3E%20%3C/filter%3E%20%3C/defs%3E%20%3C%21--%20Emblem%20Group%20--%3E%20%3Cg%20transform%3D%22translate%286%2C%204%29%22%3E%20%3C%21--%20Outer%20Teardrop%20/%20Vitality%20Nectar%20Vessel%20--%3E%20%3Cpath%20d%3D%22M21%202%20C21%202%205%2018%205%2028%20C5%2037%2012%2043%2021%2043%20C30%2043%2037%2037%2037%2028%20C37%2018%2021%202%2021%202Z%22%20fill%3D%22url%28%23emeraldGrad%29%22%20/%3E%20%3C%21--%20Inner%20Soft%20Jade%20Shadow%20/%20Contrast%20Layer%20--%3E%20%3Cpath%20d%3D%22M21%207%20C21%207%209%2020%209%2028%20C9%2035%2014%2039.5%2021%2039.5%20C28%2039.5%2033%2035%2033%2028%20C33%2020%2021%207%2021%207Z%22%20fill%3D%22%23064E3B%22%20opacity%3D%220.35%22%20/%3E%20%3C%21--%20Left%20Organic%20Sprout%20Leaf%20--%3E%20%3Cpath%20d%3D%22M21%2034%20C16%2031%2013%2025%2015%2020%20C18%2019%2022%2022%2021%2028%20Z%22%20fill%3D%22url%28%23mintGrad%29%22%20/%3E%20%3C%21--%20Right%20Organic%20Sprout%20Leaf%20--%3E%20%3Cpath%20d%3D%22M21%2034%20C25%2029%2027%2023%2024%2017%20C22%2017%2019%2021%2021%2027%20Z%22%20fill%3D%22%236EE7B7%22%20/%3E%20%3C%21--%20Radiant%20Turmeric%20Heart%20/%20Vital%20Core%20%28Ojas%20Essence%29%20--%3E%20%3Ccircle%20cx%3D%2221%22%20cy%3D%2227%22%20r%3D%224.2%22%20fill%3D%22url%28%23turmericGrad%29%22%20filter%3D%22url%28%23softGlow%29%22%20/%3E%20%3Ccircle%20cx%3D%2221%22%20cy%3D%2227%22%20r%3D%222.2%22%20fill%3D%22%23FEF3C7%22%20/%3E%20%3C/g%3E%20%3C%21--%20Typography%3A%20%22Ojas%22%20--%3E%20%3Ctext%20x%3D%2256%22%20y%3D%2229%22%20font-family%3D%22%27Plus%20Jakarta%20Sans%27%2C%20%27Inter%27%2C%20-apple-system%2C%20BlinkMacSystemFont%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22800%22%20letter-spacing%3D%22-0.5px%22%20fill%3D%22%23047857%22%3E%20Ojas%20%3C/text%3E%20%3C%21--%20Tagline%20/%20Subtitle%3A%20%22NUTRITION%20COMPANION%22%20--%3E%20%3Ctext%20x%3D%2257%22%20y%3D%2241%22%20font-family%3D%22%27Plus%20Jakarta%20Sans%27%2C%20%27Inter%27%2C%20-apple-system%2C%20BlinkMacSystemFont%2C%20sans-serif%22%20font-size%3D%228.5%22%20font-weight%3D%22600%22%20letter-spacing%3D%221.2px%22%20fill%3D%22%23059669%22%20text-transform%3D%22uppercase%22%3E%20NUTRITION%20COMPANION%20%3C/text%3E%20%3C%21--%20Subtle%20Turmeric%20Accent%20Dot%20--%3E%20%3Ccircle%20cx%3D%22118%22%20cy%3D%2223%22%20r%3D%223%22%20fill%3D%22url%28%23turmericGrad%29%22%20/%3E%20%3C/svg%3E') !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: left center !important;
+  pointer-events: none !important;
+}
+
+/* In Dark Mode: Switch to Crisp White Ojas Typography in Pinned Logo */
+html.dark #header .flex.items-center:first-child::after,
+html.dark div[id="header"] .flex.items-center:first-child::after,
+[data-theme="dark"] #header .flex.items-center:first-child::after,
+[data-theme="dark"] div[id="header"] .flex.items-center:first-child::after {
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20220%2050%22%20fill%3D%22none%22%20width%3D%22220%22%20height%3D%2250%22%3E%20%3Cdefs%3E%20%3C%21--%20Gradients%20--%3E%20%3ClinearGradient%20id%3D%22emeraldGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23047857%22%20/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2310B981%22%20/%3E%20%3C/linearGradient%3E%20%3ClinearGradient%20id%3D%22mintGrad%22%20x1%3D%220%25%22%20y1%3D%22100%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2310B981%22%20/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2334D399%22%20/%3E%20%3C/linearGradient%3E%20%3ClinearGradient%20id%3D%22turmericGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23F59E0B%22%20/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23FBBF24%22%20/%3E%20%3C/linearGradient%3E%20%3Cfilter%20id%3D%22softGlow%22%20x%3D%22-20%25%22%20y%3D%22-20%25%22%20width%3D%22140%25%22%20height%3D%22140%25%22%3E%20%3CfeGaussianBlur%20stdDeviation%3D%221.5%22%20result%3D%22blur%22%20/%3E%20%3CfeComposite%20in%3D%22SourceGraphic%22%20in2%3D%22blur%22%20operator%3D%22over%22%20/%3E%20%3C/filter%3E%20%3C/defs%3E%20%3C%21--%20Emblem%20Group%20--%3E%20%3Cg%20transform%3D%22translate%286%2C%204%29%22%3E%20%3C%21--%20Outer%20Teardrop%20/%20Vitality%20Nectar%20Vessel%20--%3E%20%3Cpath%20d%3D%22M21%202%20C21%202%205%2018%205%2028%20C5%2037%2012%2043%2021%2043%20C30%2043%2037%2037%2037%2028%20C37%2018%2021%202%2021%202Z%22%20fill%3D%22url%28%23emeraldGrad%29%22%20/%3E%20%3C%21--%20Inner%20Soft%20Jade%20Shadow%20/%20Contrast%20Layer%20--%3E%20%3Cpath%20d%3D%22M21%207%20C21%207%209%2020%209%2028%20C9%2035%2014%2039.5%2021%2039.5%20C28%2039.5%2033%2035%2033%2028%20C33%2020%2021%207%2021%207Z%22%20fill%3D%22%23064E3B%22%20opacity%3D%220.35%22%20/%3E%20%3C%21--%20Left%20Organic%20Sprout%20Leaf%20--%3E%20%3Cpath%20d%3D%22M21%2034%20C16%2031%2013%2025%2015%2020%20C18%2019%2022%2022%2021%2028%20Z%22%20fill%3D%22url%28%23mintGrad%29%22%20/%3E%20%3C%21--%20Right%20Organic%20Sprout%20Leaf%20--%3E%20%3Cpath%20d%3D%22M21%2034%20C25%2029%2027%2023%2024%2017%20C22%2017%2019%2021%2021%2027%20Z%22%20fill%3D%22%236EE7B7%22%20/%3E%20%3C%21--%20Radiant%20Turmeric%20Heart%20/%20Vital%20Core%20%28Ojas%20Essence%29%20--%3E%20%3Ccircle%20cx%3D%2221%22%20cy%3D%2227%22%20r%3D%224.2%22%20fill%3D%22url%28%23turmericGrad%29%22%20filter%3D%22url%28%23softGlow%29%22%20/%3E%20%3Ccircle%20cx%3D%2221%22%20cy%3D%2227%22%20r%3D%222.2%22%20fill%3D%22%23FEF3C7%22%20/%3E%20%3C/g%3E%20%3C%21--%20Typography%3A%20%22Ojas%22%20--%3E%20%3Ctext%20x%3D%2256%22%20y%3D%2229%22%20font-family%3D%22%27Plus%20Jakarta%20Sans%27%2C%20%27Inter%27%2C%20-apple-system%2C%20BlinkMacSystemFont%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22800%22%20letter-spacing%3D%22-0.5px%22%20fill%3D%22%23FFFFFF%22%3E%20Ojas%20%3C/text%3E%20%3C%21--%20Tagline%20/%20Subtitle%3A%20%22NUTRITION%20COMPANION%22%20--%3E%20%3Ctext%20x%3D%2257%22%20y%3D%2241%22%20font-family%3D%22%27Plus%20Jakarta%20Sans%27%2C%20%27Inter%27%2C%20-apple-system%2C%20BlinkMacSystemFont%2C%20sans-serif%22%20font-size%3D%228.5%22%20font-weight%3D%22600%22%20letter-spacing%3D%221.2px%22%20fill%3D%22%2334D399%22%20text-transform%3D%22uppercase%22%3E%20NUTRITION%20COMPANION%20%3C/text%3E%20%3C%21--%20Subtle%20Turmeric%20Accent%20Dot%20--%3E%20%3Ccircle%20cx%3D%22118%22%20cy%3D%2223%22%20r%3D%223%22%20fill%3D%22url%28%23turmericGrad%29%22%20/%3E%20%3C/svg%3E') !important;
 }
 
 /* Hide the awkward center floating watermark logo so the chat is clean */
