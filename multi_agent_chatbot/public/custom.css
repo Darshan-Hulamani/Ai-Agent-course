@@ -1,0 +1,219 @@
+/* ==========================================================================
+   OJAS: YOUR EVERYDAY NUTRITION COMPANION
+   Custom Brand Stylesheet & Accessibility-Tuned Color Palette
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Ojas Core Color Palette */
+  --ojas-primary: #047857;         /* Deep Emerald (WCAG AA/AAA compliant) */
+  --ojas-primary-hover: #065f46;   /* Rich Emerald Hover */
+  --ojas-accent: #34d399;          /* Fresh Mint */
+  --ojas-accent-light: #ecfdf5;    /* Soft Jade/Mint tint */
+  --ojas-warm: #f59e0b;            /* Warm Turmeric Amber */
+  --ojas-warm-light: #fef3c7;      /* Soft Turmeric tint */
+  --ojas-bg-light: #f0fdf4;        /* Soft green-white main background */
+  --ojas-surface: #ffffff;         /* Crisp Card Surface */
+  --ojas-text-main: #064e3b;       /* Deep green-black */
+  --ojas-text-muted: #047857;      /* Secondary emerald text */
+  --ojas-border: rgba(52, 211, 153, 0.28);
+  --ojas-border-subtle: #d1fae5;
+  --ojas-shadow-sm: 0 2px 8px rgba(4, 120, 87, 0.05);
+  --ojas-shadow-md: 0 8px 24px rgba(4, 120, 87, 0.08);
+  --ojas-shadow-focus: 0 0 0 3px rgba(52, 211, 153, 0.35);
+
+  /* Chainlit Overrides */
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Global Font & Smooth Rendering */
+body, #root, input, textarea, button, select {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Page Background */
+body, [data-theme="light"], .bg-background {
+  background-color: var(--ojas-bg-light) !important;
+  color: var(--ojas-text-main) !important;
+}
+
+/* Decorative Top Accent Bar */
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #047857 0%, #34d399 50%, #f59e0b 100%);
+  z-index: 50;
+}
+
+/* Header Navbar Styling */
+header {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid var(--ojas-border) !important;
+  box-shadow: var(--ojas-shadow-sm) !important;
+}
+
+/* Logo Image Styling in Header */
+header img {
+  filter: drop-shadow(0 2px 4px rgba(4, 120, 87, 0.12));
+  transition: transform 0.2s ease;
+}
+
+header img:hover {
+  transform: scale(1.02);
+}
+
+/* Primary Buttons & Interactive Links */
+button[class*="bg-primary"], 
+.btn-primary,
+button[type="submit"] {
+  background-color: var(--ojas-primary) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 2px 10px rgba(4, 120, 87, 0.2) !important;
+}
+
+button[class*="bg-primary"]:hover,
+.btn-primary:hover,
+button[type="submit"]:hover {
+  background-color: var(--ojas-primary-hover) !important;
+  box-shadow: 0 4px 14px rgba(4, 120, 87, 0.3) !important;
+  transform: translateY(-1px);
+}
+
+a {
+  color: var(--ojas-primary) !important;
+  text-decoration-color: var(--ojas-accent) !important;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--ojas-primary-hover) !important;
+}
+
+/* Chat Input Bar Elevated Container */
+#chat-input,
+div[class*="ChatInput"],
+form[class*="relative"] textarea {
+  border-radius: 14px !important;
+  border: 1.5px solid var(--ojas-border) !important;
+  background: #ffffff !important;
+  color: var(--ojas-text-main) !important;
+  font-size: 0.96rem !important;
+  transition: all 0.2s ease !important;
+}
+
+#chat-input:focus,
+form[class*="relative"] textarea:focus {
+  border-color: var(--ojas-primary) !important;
+  box-shadow: var(--ojas-shadow-focus) !important;
+  outline: none !important;
+}
+
+/* Assistant Message Cards */
+div[class*="step"][data-step-type="message"] {
+  border-radius: 14px !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Tool Execution Step Accordions (RAG & Web Search) */
+div[class*="Step"],
+div[class*="step"] button {
+  border-radius: 10px !important;
+}
+
+div[class*="step"] {
+  border-left-color: var(--ojas-primary) !important;
+}
+
+/* Custom Badges & Tags */
+.ojas-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  background: var(--ojas-accent-light);
+  color: var(--ojas-text-main);
+  border: 1px solid var(--ojas-border);
+}
+
+.ojas-badge-warm {
+  background: var(--ojas-warm-light);
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+/* Welcome Screen Card Enhancements */
+.ojas-hero-card {
+  background: #ffffff;
+  border: 1px solid var(--ojas-border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: var(--ojas-shadow-md);
+  margin-bottom: 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ojas-hero-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(4, 120, 87, 0.12);
+}
+
+.ojas-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.ojas-feature-pill {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid var(--ojas-border-subtle);
+  border-radius: 12px;
+  box-shadow: var(--ojas-shadow-sm);
+  transition: all 0.18s ease;
+}
+
+.ojas-feature-pill:hover {
+  border-color: var(--ojas-accent);
+  background: var(--ojas-accent-light);
+  transform: translateY(-1px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ojas-bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a7f3d0;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ojas-primary);
+}

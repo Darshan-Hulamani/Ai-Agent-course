@@ -1,0 +1,55 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Agentic AI Crash Course Image",
+	// "build": {
+	// 	// Path is relative to the devcontainer.json file.
+	// 	"context": "../",
+	// 	"dockerfile": "Dockerfile"
+	// },
+	// Allow the devcontainer to run host docker commands, see https://github.com/devcontainers/templates/tree/main/src/docker-outside-of-docker
+	// "features": {
+	//	"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+	//},
+	// Configure tool-specific properties.
+	// "customizations": {},
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+	"image": "ghcr.io/nordquant/ai-agents-crash-course-codespace:latest-release",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"extensions.autoUpdate": false,
+				"extensions.autoCheckUpdates": false
+			},
+			"extensions": [
+				"ms-toolsai.jupyter",
+				"ms-python.python"
+			]
+		},
+		"codespaces": {
+			"openFiles": [
+				"COURSE_RESOURCES.md"
+			]
+		}
+	},
+	"remoteEnv": {
+		"WORKSPACE_FOLDER": "${containerWorkspaceFolder}"
+	},
+	"postCreateCommand": "[ -d chatkit ] && cd chatkit && npm install || true",
+	//"postAttachCommand": "bash .devcontainer/setup-terminal.sh",
+	// Update port forwarding configuration
+	"forwardPorts": [
+		10000
+	],
+	"remoteUser": "vscode",
+	"runArgs": [
+		//"--network=host"
+	],
+	"portsAttributes": {
+		"10000": {
+			"label": "Chainlit UI",
+			"onAutoForward": "openBrowser"
+		}
+	}
+}

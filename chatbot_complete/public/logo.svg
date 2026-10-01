@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 50" fill="none" width="100%" height="100%">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#10B981" />
+    </linearGradient>
+    <linearGradient id="mintGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#34D399" />
+    </linearGradient>
+    <linearGradient id="turmericGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#FBBF24" />
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Emblem Group -->
+  <g transform="translate(6, 4)">
+    <!-- Outer Teardrop / Vitality Nectar Vessel -->
+    <path d="M21 2 C21 2 5 18 5 28 C5 37 12 43 21 43 C30 43 37 37 37 28 C37 18 21 2 21 2Z" 
+          fill="url(#emeraldGrad)" />
+
+    <!-- Inner Soft Jade Shadow / Contrast Layer -->
+    <path d="M21 7 C21 7 9 20 9 28 C9 35 14 39.5 21 39.5 C28 39.5 33 35 33 28 C33 20 21 7 21 7Z" 
+          fill="#064E3B" opacity="0.35" />
+
+    <!-- Left Organic Sprout Leaf -->
+    <path d="M21 34 C16 31 13 25 15 20 C18 19 22 22 21 28 Z" 
+          fill="url(#mintGrad)" />
+
+    <!-- Right Organic Sprout Leaf -->
+    <path d="M21 34 C25 29 27 23 24 17 C22 17 19 21 21 27 Z" 
+          fill="#6EE7B7" />
+
+    <!-- Radiant Turmeric Heart / Vital Core (Ojas Essence) -->
+    <circle cx="21" cy="27" r="4.2" fill="url(#turmericGrad)" filter="url(#softGlow)" />
+    <circle cx="21" cy="27" r="2.2" fill="#FEF3C7" />
+  </g>
+
+  <!-- Typography: "Ojas" -->
+  <text x="56" y="29" 
+        font-family="'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif" 
+        font-size="24" 
+        font-weight="800" 
+        letter-spacing="-0.5px" 
+        fill="#047857">
+    Ojas
+  </text>
+
+  <!-- Tagline / Subtitle: "NUTRITION COMPANION" -->
+  <text x="57" y="41" 
+        font-family="'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif" 
+        font-size="8.5" 
+        font-weight="600" 
+        letter-spacing="1.2px" 
+        fill="#059669" 
+        text-transform="uppercase">
+    NUTRITION COMPANION
+  </text>
+  
+  <!-- Subtle Turmeric Accent Dot -->
+  <circle cx="118" cy="23" r="3" fill="url(#turmericGrad)" />
+</svg>

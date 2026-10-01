@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" width="100%" height="100%">
+  <defs>
+    <linearGradient id="avatarBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ECFDF5" />
+      <stop offset="100%" stop-color="#D1FAE5" />
+    </linearGradient>
+    <linearGradient id="avEmeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="avMintGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#34D399" />
+    </linearGradient>
+    <linearGradient id="avTurmericGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#FBBF24" />
+    </linearGradient>
+    <filter id="avGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Circular Outer Background Frame -->
+  <circle cx="50" cy="50" r="48" fill="url(#avatarBgGrad)" stroke="#34D399" stroke-width="2.5" />
+  
+  <!-- Subtle Internal Ring -->
+  <circle cx="50" cy="50" r="42" stroke="#A7F3D0" stroke-width="1.2" stroke-dasharray="3 3" />
+
+  <!-- Centered Emblem (Scalable Ojas Droplet) -->
+  <g transform="translate(18, 12)">
+    <!-- Main Vitality Drop Body -->
+    <path d="M32 6 C32 6 8 30 8 45 C8 58 19 68 32 68 C45 68 56 58 56 45 C56 30 32 6 32 6Z" 
+          fill="url(#avEmeraldGrad)" />
+
+    <!-- Inner Shadow -->
+    <path d="M32 14 C32 14 14 33 14 45 C14 55 22 62 32 62 C42 62 50 55 50 45 C50 33 32 14 32 14Z" 
+          fill="#064E3B" opacity="0.3" />
+
+    <!-- Left Sprout Leaf -->
+    <path d="M32 54 C24 49 20 40 23 32 C27 30 33 35 32 45 Z" 
+          fill="url(#avMintGrad)" />
+
+    <!-- Right Sprout Leaf -->
+    <path d="M32 54 C38 46 41 37 36 27 C33 27 29 33 32 43 Z" 
+          fill="#6EE7B7" />
+
+    <!-- Core Golden Vital Spark (Ojas Essence) -->
+    <circle cx="32" cy="43" r="6.5" fill="url(#avTurmericGrad)" filter="url(#avGlow)" />
+    <circle cx="32" cy="43" r="3.5" fill="#FFFBEB" />
+  </g>
+</svg>

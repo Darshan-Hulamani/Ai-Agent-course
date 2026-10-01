@@ -1,0 +1,13 @@
+openai-agents
+python-dotenv
+chainlit
+chromadb
+ipykernel
+pandas
+tqdm
+
+# development
+flake8
+autopep8
+isort
+black[jupyter]
