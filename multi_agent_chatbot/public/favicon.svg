@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="favLeaf" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#10B981" />
+    </linearGradient>
+    <linearGradient id="favGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#FBBF24" />
+    </linearGradient>
+  </defs>
+  <!-- Rounded Base Background -->
+  <rect width="64" height="64" rx="14" fill="#047857" />
+  <!-- Ojas Sprout Droplet -->
+  <path d="M32 8 C32 8 14 26 14 38 C14 48 22 56 32 56 C42 56 50 48 50 38 C50 26 32 8 32 8Z" fill="#10B981" />
+  <!-- Inner Mint Leaves -->
+  <path d="M32 46 C26 42 22 35 25 28 C28 27 33 30 32 38 Z" fill="#6EE7B7" />
+  <path d="M32 46 C37 40 40 33 36 25 C33 25 30 30 32 37 Z" fill="#A7F3D0" />
+  <!-- Golden Core -->
+  <circle cx="32" cy="37" r="5" fill="url(#favGold)" />
+  <circle cx="32" cy="37" r="2.5" fill="#FFFBEB" />
+</svg>
