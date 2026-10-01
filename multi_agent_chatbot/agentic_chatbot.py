@@ -1,12 +1,15 @@
+import base64
 import os
 
 import chainlit as cl
 import dotenv
 from agents import InputGuardrailTripwireTriggered, Runner, SQLiteSession
 from nutrition_agent import exa_search_mcp, nutrition_agent
+from openai import AsyncOpenAI
 from openai.types.responses import ResponseTextDeltaEvent
 
 dotenv.load_dotenv()
+openai_client = AsyncOpenAI()
 
 
 @cl.on_chat_start
@@ -26,10 +29,63 @@ async def on_message(message: cl.Message):
     session = cl.user_session.get("agent_session")
     msg = cl.Message(content="", author="Ojas")
 
+    # Multimodal Vision Analysis: detect uploaded food images
+    query_content = message.content or ""
+    images = [
+        el for el in (message.elements or [])
+        if isinstance(el, cl.Image) or getattr(el, "mime", "").startswith("image/")
+    ]
+
+    if images:
+        image = images[0]
+        try:
+            with cl.Step(name="Analyzing food image with Vision AI...", type="tool") as vision_step:
+                with open(image.path, "rb") as f:
+                    encoded_img = base64.b64encode(f.read()).decode("utf-8")
+                mime_type = getattr(image, "mime", None) or "image/jpeg"
+
+                vision_resp = await openai_client.chat.completions.create(
+                    model="gpt-4o",
+                    messages=[
+                        {
+                            "role": "system",
+                            "content": (
+                                "You are a professional nutrition vision assistant. Analyze the food photo accurately and concisely. "
+                                "Identify each dish, visible ingredients, estimated portion sizes, and preparation style "
+                                "so our calorie and nutrition agent can calculate precise calories."
+                            ),
+                        },
+                        {
+                            "role": "user",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": f"User question: {query_content or 'Analyze the food and estimate calories.'}\nIdentify all food items, ingredients, and portion sizes in this picture.",
+                                },
+                                {
+                                    "type": "image_url",
+                                    "image_url": {"url": f"data:{mime_type};base64,{encoded_img}"},
+                                },
+                            ],
+                        },
+                    ],
+                    max_tokens=600,
+                )
+                food_description = vision_resp.choices[0].message.content or ""
+                vision_step.output = food_description[:300] + ("..." if len(food_description) > 300 else "")
+
+                query_content = (
+                    f"The user shared a photo of a meal. Here is the visual breakdown of the food items and estimated portions:\n"
+                    f"{food_description}\n\n"
+                    f"User request: {message.content or 'Calculate the calories and breakdown the meal nutrition.'}"
+                )
+        except Exception as img_err:
+            print(f"Vision analysis error: {img_err}")
+
     try:
         result = Runner.run_streamed(
             nutrition_agent,
-            message.content,
+            query_content,
             session=session,
         )
 
